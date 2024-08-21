@@ -1,0 +1,26 @@
+-- Define the RocketLaunch table schema
+import kotlin.Boolean;
+
+CREATE TABLE RocketLaunch (
+    flightNumber INTEGER NOT NULL,
+    missionName TEXT NOT NULL,
+    details TEXT,
+    launchSuccess INTEGER AS Boolean DEFAULT NULL,
+    launchDateUTC TEXT NOT NULL,
+    patchUrlSmall TEXT,
+    patchUrlLarge TEXT,
+    articleUrl TEXT
+);
+
+-- Query to select all launches
+selectAll:
+SELECT * FROM RocketLaunch;
+
+-- Query to insert a new launch
+insertLaunch:
+INSERT INTO RocketLaunch(flightNumber, missionName, details, launchSuccess, launchDateUTC, patchUrlSmall, patchUrlLarge, articleUrl)
+VALUES(?, ?, ?, ?, ?, ?, ?, ?);
+
+-- Query to delete all launches (useful for clearing data)
+deleteAll:
+DELETE FROM RocketLaunch;
