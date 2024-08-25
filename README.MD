@@ -1,8 +1,6 @@
-# CMMP Launches
+# Compose Multiplatform Launches
 
 This project is a reimplementation of the Kotlin Multiplatform (KMP) tutorial '[Create a multiplatform app using Ktor and SQLDelight](https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-ktor-sqldelight.html)' using Jetpack Compose for Mobile Multiplatform. It demonstrates how to build a cross-platform application that runs on both Android and iOS using shared Kotlin code and Compose for UI.
-
-Read the related blog post: [here](https://todo.com)
 
 ## Features
 
@@ -12,7 +10,7 @@ Read the related blog post: [here](https://todo.com)
 - **Dependency Injection**: Using Koin for dependency management.
 - **Networking**: Using Ktor for making network requests.
 - **Database**: Using SQLDelight for local database management.
-- **Pull to Refresh**: Implemented using `dev.materii.pullrefresh`.
+- **Pull to Refresh**: Implemented using [dev.materii.pullrefresh](https://github.com/MateriiApps/pullrefresh).
 
 ## Project Structure
 
@@ -65,30 +63,6 @@ To run the application on iPhone device/simulator:
 - Or use [Kotlin Multiplatform Mobile plugin](https://plugins.jetbrains.com/plugin/14936-kotlin-multiplatform-mobile) for Android Studio
   Run iOS simulator UI tests: `./gradlew :composeApp:iosSimulatorArm64Test`
 
-## Code Overview
-
-### `LaunchesScreen`
-
-The main screen of the app that displays a list of launches. It uses a `PullRefreshLayout` to enable pull-to-refresh functionality.
-
-### `LaunchList`
-
-Displays a list of launches using a `LazyColumn`. Each launch item includes an image, mission name, launch year, success status, and details.
-
-### `LoadingScreen`
-
-Displays a loading indicator when the data is being fetched.
-
-### `ErrorScreen`
-
-Displays an error message when there is an issue fetching the data.
-
-## Previews
-
-The project includes Compose previews for different UI states (loading, error, and success) to facilitate UI development and testing.
-
-## License
-
 This project is licensed under the MIT License. See the `LICENSE` file for more details.
 
 ## Acknowledgements
@@ -114,3 +88,4 @@ Special thanks to:
 - CI/CD with GitHub Actions
 - Pre-commit hooks with Ktlint and Detekt
 - Rename the app to CMMPLaunches
+- A decent looking error screen (that captures a few different http errors into a few easily readable messages)
