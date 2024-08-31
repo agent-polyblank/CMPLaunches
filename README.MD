@@ -89,3 +89,5 @@ Special thanks to:
 - Pre-commit hooks with Ktlint and Detekt
 - Rename the app to CMMPLaunches
 - A decent looking error screen (that captures a few different http errors into a few easily readable messages)
+- Searching, Sorting and Filtering
+- Responsive UI layout for tablets

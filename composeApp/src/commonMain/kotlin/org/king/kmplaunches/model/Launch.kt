@@ -22,7 +22,7 @@ data class RocketLaunchExt(
     @SerialName("success")
     val launchSuccess: Boolean?,
     @SerialName("links")
-    val links: Links
+    val links: Links,
 ) {
     var launchYear = Instant.parse(launchDateUTC).toLocalDateTime(TimeZone.UTC).year
 }
@@ -35,7 +35,7 @@ data class Links(
     @SerialName("patch")
     val patch: Patch?,
     @SerialName("article")
-    val article: String?
+    val article: String?,
 )
 
 /**
@@ -46,5 +46,5 @@ data class Patch(
     @SerialName("small")
     val small: String?,
     @SerialName("large")
-    val large: String?
+    val large: String?,
 )

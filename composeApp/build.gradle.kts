@@ -1,5 +1,5 @@
-import org.jetbrains.compose.ExperimentalComposeLibrary
 import com.android.build.api.dsl.ManagedVirtualDevice
+import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
@@ -21,13 +21,13 @@ kotlin {
             compileTaskProvider {
                 compilerOptions {
                     jvmTarget.set(JvmTarget.JVM_1_8)
-                    //https://jakewharton.com/gradle-toolchains-are-rarely-a-good-idea/#what-do-i-do
+                    // https://jakewharton.com/gradle-toolchains-are-rarely-a-good-idea/#what-do-i-do
                     freeCompilerArgs.add("-Xjdk-release=${JavaVersion.VERSION_1_8}")
                     freeCompilerArgs.add("-Xexpect-actual-classes")
                 }
             }
         }
-        //https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-test.html
+        // https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-test.html
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
         instrumentedTestVariant.sourceSetTree.set(KotlinSourceSetTree.test)
     }
@@ -41,7 +41,7 @@ kotlin {
     listOf(
         iosX64(),
         iosArm64(),
-        iosSimulatorArm64()
+        iosSimulatorArm64(),
     ).forEach {
         it.binaries.framework {
             baseName = "ComposeApp"
@@ -70,10 +70,7 @@ kotlin {
             implementation(libs.materii.pullrefresh)
             implementation(libs.coil)
             implementation(libs.coil.network.ktor)
-
-            implementation(libs.coil.compose.core)
             implementation(libs.coil.compose)
-            implementation(libs.coil.mp)
             implementation(libs.coil.network.ktor)
         }
 
@@ -82,7 +79,6 @@ kotlin {
             @OptIn(ExperimentalComposeLibrary::class)
             implementation(compose.uiTest)
             implementation(libs.kotlinx.coroutines.test)
-
         }
 
         androidMain.dependencies {
@@ -93,15 +89,12 @@ kotlin {
             implementation(libs.ktor.client.okhttp)
             implementation(libs.sqlDelight.driver.android)
             implementation(libs.koin.android)
-
-            implementation(libs.androidx.ui.tooling.preview.v111)
         }
 
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
             implementation(libs.sqlDelight.driver.native)
         }
-
     }
 }
 
@@ -128,7 +121,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-    //https://developer.android.com/studio/test/gradle-managed-devices
+    // https://developer.android.com/studio/test/gradle-managed-devices
     @Suppress("UnstableApiUsage")
     testOptions {
         managedDevices.devices {
@@ -145,12 +138,12 @@ android {
     }
 }
 
-//https://developer.android.com/develop/ui/compose/testing#setup
+// https://developer.android.com/develop/ui/compose/testing#setup
 dependencies {
     implementation(libs.androidx.appcompat)
     androidTestImplementation(libs.androidx.uitest.junit4)
     debugImplementation(libs.androidx.uitest.testManifest)
-    //temporary fix: https://youtrack.jetbrains.com/issue/CMP-5864
+    // temporary fix: https://youtrack.jetbrains.com/issue/CMP-5864
     androidTestImplementation("androidx.test:monitor") {
         version { strictly("1.6.1") }
     }

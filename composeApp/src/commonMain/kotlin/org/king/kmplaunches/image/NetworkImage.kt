@@ -22,7 +22,7 @@ import coil3.request.ImageRequest
  * @param contentDescription The content description of the image.
  */
 @Composable
-fun NetworkImage(
+fun networkImage(
     imageUrl: String,
     modifier: Modifier = Modifier,
     contentScale: ContentScale,
@@ -30,18 +30,21 @@ fun NetworkImage(
 ) {
     SubcomposeAsyncImage(
         imageLoader = getAsyncImageLoader(LocalPlatformContext.current),
-        model = ImageRequest.Builder(LocalPlatformContext.current)
-            .data(imageUrl).build(),
+        model =
+            ImageRequest
+                .Builder(LocalPlatformContext.current)
+                .data(imageUrl)
+                .build(),
         loading = {
             Box(contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(
                     color = MaterialTheme.colorScheme.secondary,
-                    modifier = Modifier.size(32.dp)
+                    modifier = Modifier.size(32.dp),
                 )
             }
         },
         contentDescription = contentDescription,
         contentScale = contentScale,
-        modifier = modifier
+        modifier = modifier,
     )
 }

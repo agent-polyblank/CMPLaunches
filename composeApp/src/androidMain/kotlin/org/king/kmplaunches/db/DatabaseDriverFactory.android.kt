@@ -8,15 +8,13 @@ import app.cash.sqldelight.driver.android.AndroidSqliteDriver
  * Provides a [SqlDriver] for Android.
  */
 actual class DatabaseDriverFactory {
-
     /**
      * Provide the Android [Context] to use when creating the [SqlDriver].
      */
-    fun provideContext(context: Context): DatabaseDriverFactory {
-        return DatabaseDriverFactory().apply {
+    fun provideContext(context: Context): DatabaseDriverFactory =
+        DatabaseDriverFactory().apply {
             this.context = context
         }
-    }
 
     /**
      * The Android [Context] to use when creating the [SqlDriver].

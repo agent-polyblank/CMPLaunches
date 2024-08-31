@@ -1,6 +1,6 @@
 package org.king.kmplaunches.module
 
-import SpaceXApi
+import SpaceXAPI
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.DEFAULT
@@ -14,23 +14,28 @@ import org.king.kmplaunches.viewmodel.LaunchesViewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
-val commonModule = module {
-    single { HttpClient {
-        install(ContentNegotiation) {
-            json(Json {
-                prettyPrint = true
-                isLenient = true
-                ignoreUnknownKeys = true
-            })
+val commonModule =
+    module {
+        single {
+            HttpClient {
+                install(ContentNegotiation) {
+                    json(
+                        Json {
+                            prettyPrint = true
+                            isLenient = true
+                            ignoreUnknownKeys = true
+                        },
+                    )
+                }
+                install(Logging) {
+                    logger = Logger.DEFAULT
+                    level = LogLevel.ALL
+                }
+            }
         }
-        install(Logging) {
-            logger = Logger.DEFAULT
-            level = LogLevel.ALL
-        }
-    } }
-    single { SpaceXSDK(get(), get()) }
-    single { SpaceXApi(get()) }
-    factory { LaunchesViewModel(get()) }
-}
+        single { SpaceXSDK(get(), get()) }
+        single { SpaceXAPI(get()) }
+        factory { LaunchesViewModel(get()) }
+    }
 
 expect val platformModules: Module

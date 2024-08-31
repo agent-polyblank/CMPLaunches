@@ -10,4 +10,9 @@ import coil3.util.DebugLogger
  * Returns a configured [ImageLoader] instance for loading images asynchronously.
  */
 fun getAsyncImageLoader(context: PlatformContext) =
-    ImageLoader.Builder(context).crossfade(true).logger(DebugLogger()).memoryCachePolicy(CachePolicy.ENABLED).build()
+    ImageLoader
+        .Builder(context)
+        .crossfade(true)
+        .logger(DebugLogger())
+        .memoryCachePolicy(CachePolicy.ENABLED)
+        .build()

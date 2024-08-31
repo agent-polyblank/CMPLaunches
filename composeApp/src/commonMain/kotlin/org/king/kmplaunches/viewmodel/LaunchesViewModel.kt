@@ -12,7 +12,9 @@ import org.king.kmplaunches.ui.UiState
 /**
  * ViewModel for the LaunchesScreen.
  */
-class LaunchesViewModel(private val sdk: SpaceXSDK): ViewModel() {
+class LaunchesViewModel(
+    private val sdk: SpaceXSDK,
+) : ViewModel() {
     private val _launches = MutableStateFlow<UiState<List<RocketLaunchExt>>>(UiState.Loading)
     val launches: StateFlow<UiState<List<RocketLaunchExt>>> = _launches
 

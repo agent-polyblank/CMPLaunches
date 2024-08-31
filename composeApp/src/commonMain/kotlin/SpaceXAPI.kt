@@ -4,7 +4,9 @@ import io.ktor.client.request.get
 import io.ktor.client.statement.HttpResponse
 import org.king.kmplaunches.model.RocketLaunchExt
 
-class SpaceXApi(private val client: HttpClient) {
+class SpaceXAPI(
+    private val client: HttpClient,
+) {
     suspend fun getAllLaunches(): List<RocketLaunchExt> {
         try {
             val response: HttpResponse = client.get("https://api.spacexdata.com/v4/launches")

@@ -23,10 +23,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import dev.materii.pullrefresh.PullRefreshLayout
 import dev.materii.pullrefresh.rememberPullRefreshState
-import org.jetbrains.compose.ui.tooling.preview.Preview
-import org.king.kmplaunches.image.NetworkImage
-import org.king.kmplaunches.model.Links
-import org.king.kmplaunches.model.Patch
+import org.king.kmplaunches.image.networkImage
 import org.king.kmplaunches.model.RocketLaunchExt
 import org.king.kmplaunches.theme.app_theme_successful
 import org.king.kmplaunches.theme.app_theme_unsuccessful
@@ -45,28 +42,29 @@ fun LaunchesScreen(viewModel: LaunchesViewModel = koinInject()) {
     val pullRefreshState = rememberPullRefreshState(refreshing = isRefreshing, onRefresh = { viewModel.refresh() })
 
     PullRefreshLayout(
-            state = pullRefreshState, modifier = Modifier.fillMaxSize()
-        ) {
-            when (val state = uiState.value) {
-                is UiState.Loading -> {
-                    LoadingScreen()
-                }
-                is UiState.Success -> {
-                    LaunchList(state)
-                }
-                is UiState.Error -> {
-                    ErrorScreen(state)
-                }
+        state = pullRefreshState,
+        modifier = Modifier.fillMaxSize(),
+    ) {
+        when (val state = uiState.value) {
+            is UiState.Loading -> {
+                LoadingScreen()
+            }
+            is UiState.Success -> {
+                LaunchList(state)
+            }
+            is UiState.Error -> {
+                ErrorScreen(state)
             }
         }
     }
+}
 
 /**
  * Display an error message.
  * @param state The state of the UI
  */
 @Composable
-private fun ErrorScreen(state: UiState.Error) {
+fun ErrorScreen(state: UiState.Error) {
     Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
         Text(text = "Error: ${state.exception.message}")
     }
@@ -77,20 +75,21 @@ private fun ErrorScreen(state: UiState.Error) {
  * @param state The state of the UI
  */
 @Composable
-private fun LaunchList(state: UiState.Success<List<RocketLaunchExt>>) {
+fun LaunchList(state: UiState.Success<List<RocketLaunchExt>>) {
     LazyColumn {
         items(state.data) { launch ->
             Row(
                 modifier = Modifier.padding(all = 16.dp).fillMaxSize().height(150.dp),
-                verticalAlignment = Alignment.CenterVertically // Center vertically
+                verticalAlignment = Alignment.CenterVertically, // Center vertically
             ) {
-                NetworkImage(
+                networkImage(
                     imageUrl = launch.links.patch?.small ?: "",
                     contentScale = ContentScale.Crop,
                     contentDescription = "Patch",
-                    modifier = Modifier
-                        .width(100.dp)
-                        .height(100.dp)
+                    modifier =
+                        Modifier
+                            .width(100.dp)
+                            .height(100.dp),
                 )
                 Spacer(modifier = Modifier.width(10.dp))
                 Column {
@@ -101,7 +100,7 @@ private fun LaunchList(state: UiState.Success<List<RocketLaunchExt>>) {
                     Spacer(Modifier.height(8.dp))
                     Text(
                         text = if (launch.launchSuccess == true) "Successful" else "Unsuccessful",
-                        color = if (launch.launchSuccess == true) app_theme_successful else app_theme_unsuccessful
+                        color = if (launch.launchSuccess == true) app_theme_successful else app_theme_unsuccessful,
                     )
                     Spacer(Modifier.height(8.dp))
                     val details = launch.details
@@ -121,52 +120,4 @@ fun LoadingScreen() {
     Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
         CircularProgressIndicator()
     }
-}
-
-@Preview
-@Composable
-fun LaunchesErrorScreenPreview() {
-    ErrorScreen(UiState.Error(Exception("An error occurred")))
-}
-
-@Preview
-@Composable
-fun LaunchesScreenLoadingPreview() {
-    LoadingScreen()
-}
-
-@Preview
-@Composable
-fun LaunchesScreenPreview() {
-    val sampleLaunches = listOf(
-        RocketLaunchExt(
-            flightNumber = 1,
-            missionName = "FalconSat",
-            launchDateUTC = "2006-03-24T22:30:00.000Z",
-            details = "Engine failure at 33 seconds and loss of vehicle",
-            launchSuccess = false,
-            links = Links(
-                patch = Patch(
-                    small = "https://images2.imgbox.com/3c/0e/T8iJcSN3_o.png",
-                    large = "https://images2.imgbox.com/40/e3/GypSkayF_o.png"
-                ),
-                article = "https://www.space.com/2196-spacex-inaugural-falcon-1-rocket-lost-launch.html"
-            )
-        ),
-        RocketLaunchExt(
-            flightNumber = 2,
-            missionName = "DemoSat",
-            launchDateUTC = "2007-03-21T01:10:00.000Z",
-            details = "Successful first stage burn and transition to second stage, but the second stage did not reach orbit",
-            launchSuccess = false,
-            links = Links(
-                patch = Patch(
-                    small = "https://images2.imgbox.com/4b/bd/d8UxLh4q_o.png",
-                    large = "https://images2.imgbox.com/80/a2/bkWotCIS_o.png"
-                ),
-                article = "https://www.space.com/2299-spacex-falcon-1-rocket-fails-reach-orbit.html"
-            )
-        )
-    )
-    LaunchList(UiState.Success(sampleLaunches))
 }

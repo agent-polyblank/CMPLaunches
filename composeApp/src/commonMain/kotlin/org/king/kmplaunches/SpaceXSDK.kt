@@ -1,6 +1,6 @@
 package org.king.kmplaunches
 
-import SpaceXApi
+import SpaceXAPI
 import org.king.kmplaunches.db.AppDatabase
 import org.king.kmplaunches.db.DatabaseDriverFactory
 import org.king.kmplaunches.extension.toRocketLaunchExt
@@ -9,7 +9,10 @@ import org.king.kmplaunches.model.RocketLaunchExt
 /**
  * SDK for interacting with SpaceX API and database.
  */
-class SpaceXSDK(databaseDriverFactory: DatabaseDriverFactory, val api: SpaceXApi) {
+class SpaceXSDK(
+    databaseDriverFactory: DatabaseDriverFactory,
+    private val api: SpaceXAPI,
+) {
     private val database = AppDatabase(databaseDriverFactory.createDriver())
 
     /**
@@ -24,7 +27,7 @@ class SpaceXSDK(databaseDriverFactory: DatabaseDriverFactory, val api: SpaceXApi
         } else {
             api.getAllLaunches().also {
                 database.appDatabaseQueries.transaction {
-                    it.forEach { launch:RocketLaunchExt ->
+                    it.forEach { launch: RocketLaunchExt ->
                         database.appDatabaseQueries.insertLaunch(
                             flightNumber = launch.flightNumber.toLong(),
                             missionName = launch.missionName,
@@ -33,7 +36,7 @@ class SpaceXSDK(databaseDriverFactory: DatabaseDriverFactory, val api: SpaceXApi
                             launchDateUTC = launch.launchDateUTC,
                             patchUrlSmall = launch.links.patch?.small,
                             patchUrlLarge = launch.links.patch?.large,
-                            articleUrl = launch.links.article
+                            articleUrl = launch.links.article,
                         )
                     }
                 }
