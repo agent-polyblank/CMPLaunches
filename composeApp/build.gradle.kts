@@ -1,5 +1,6 @@
 import com.android.build.api.dsl.ManagedVirtualDevice
 import org.jetbrains.compose.ExperimentalComposeLibrary
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
@@ -48,7 +49,7 @@ kotlin {
             isStatic = true
         }
     }
-
+    jvm()
     sourceSets {
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -95,6 +96,13 @@ kotlin {
             implementation(libs.ktor.client.darwin)
             implementation(libs.sqlDelight.driver.native)
         }
+
+        jvmMain.dependencies {
+            implementation(compose.desktop.currentOs)
+            implementation(libs.sqlite.driver)
+            implementation(libs.ktor.client.cio)
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.6.4")
+        }
     }
 }
 
@@ -135,6 +143,18 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+}
+
+compose.desktop {
+    application {
+        mainClass = "MainKt"
+
+        nativeDistributions {
+            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            packageName = "org.king.kmplaunches.desktopApp"
+            packageVersion = "1.0.0"
+        }
     }
 }
 

@@ -43,7 +43,7 @@ This project is a reimplementation of the Kotlin Multiplatform (KMP) tutorial '[
 
 ## Running the App
 
-## Before running!
+### Before running!
 - check your system with [KDoctor](https://github.com/Kotlin/kdoctor)
 - install JDK 17 or higher on your machine
 - add `local.properties` file to the project root and set a path to Android SDK there
@@ -62,6 +62,11 @@ To run the application on iPhone device/simulator:
 - Open `iosApp/iosApp.xcproject` in Xcode and run standard configuration
 - Or use [Kotlin Multiplatform Mobile plugin](https://plugins.jetbrains.com/plugin/14936-kotlin-multiplatform-mobile) for Android Studio
   Run iOS simulator UI tests: `./gradlew :composeApp:iosSimulatorArm64Test`
+
+### Desktop
+
+Run the desktop application: `./gradlew :composeApp:run`
+Run desktop UI tests: `./gradlew :composeApp:jvmTest`
 
 This project is licensed under the MIT License. See the `LICENSE` file for more details.
 
@@ -86,8 +91,10 @@ Special thanks to:
 - Add Flow testing with Turbine.
 - Add UI Tests with Jetpack Compose Testing
 - CI/CD with GitHub Actions
-- Pre-commit hooks with Ktlint and Detekt
-- Rename the app to CMMPLaunches
+- ~~Pre-commit hooks with Ktlint and Detekt~~
+- Rename the app to CMPLaunches
 - A decent looking error screen (that captures a few different http errors into a few easily readable messages)
 - Searching, Sorting and Filtering
-- Responsive UI layout for tablets
+- Responsive UI layout for tablets and desktop
+- Preview for Jetpack Compose using the workaround for lack of multiplatform preview support shown [here](https://tahaben.com.ly/2024/07/how-to-preview-your-ui-in-compose-multiplatform-android-studio-intellij/).
+- Desktop support (Might as well!)
