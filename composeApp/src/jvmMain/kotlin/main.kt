@@ -6,8 +6,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
+import cafe.adriel.voyager.navigator.Navigator
 import org.king.kmplaunches.module.commonModule
 import org.king.kmplaunches.module.platformModules
+import org.king.kmplaunches.ui.LaunchScreen
 import org.king.kmplaunches.ui.LaunchesScreen
 import org.koin.core.context.startKoin
 import java.awt.Dimension
@@ -23,7 +25,7 @@ fun main() =
             onCloseRequest = ::exitApplication,
         ) {
             window.minimumSize = Dimension(350, 600)
-            LaunchesScreen()
+            Navigator(LaunchScreen())
         }
     }
 

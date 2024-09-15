@@ -73,6 +73,8 @@ kotlin {
             implementation(libs.coil.network.ktor)
             implementation(libs.coil.compose)
             implementation(libs.coil.network.ktor)
+            implementation(libs.voyager.navigator)
+            implementation(libs.voyager.screenModel)
         }
 
         commonTest.dependencies {

@@ -91,7 +91,7 @@ Special thanks to:
 - Add Flow testing with Turbine.
 - Add UI Tests with Jetpack Compose Testing
 - CI/CD with GitHub Actions
-- ~~Pre-commit hooks with Ktlint and Detekt~~
+- ~~Pre-commit hooks with Ktlint or Detekt~~
 - Rename the app to CMPLaunches
 - A decent looking error screen (that captures a few different http errors into a few easily readable messages)
 - Searching, Sorting and Filtering

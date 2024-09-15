@@ -22,7 +22,7 @@ import coil3.request.ImageRequest
  * @param contentDescription The content description of the image.
  */
 @Composable
-fun networkImage(
+fun NetworkImage(
     imageUrl: String,
     modifier: Modifier = Modifier,
     contentScale: ContentScale,

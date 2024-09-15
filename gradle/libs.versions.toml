@@ -15,9 +15,13 @@ appcompat = "1.7.0"
 androidx-lifecycle = "2.8.0"
 pullrefresh = "1.4.0-beta03"
 coil3 = "3.0.0-alpha10"
+voyager = "1.0.0"
+
 
 [libraries]
 
+voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
+voyager-screenModel = { module = "cafe.adriel.voyager:voyager-screenmodel", version.ref = "voyager" }
 androidx-activityCompose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 androidx-uitest-testManifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "androidx-uiTest" }
 androidx-uitest-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "androidx-uiTest" }
