@@ -34,8 +34,8 @@ class SpaceXSDK(
                             details = launch.details,
                             launchSuccess = launch.launchSuccess ?: false,
                             launchDateUTC = launch.launchDateUTC,
-                            patchUrlSmall = launch.links.patch?.small,
-                            patchUrlLarge = launch.links.patch?.large,
+                            patchUrlSmall = launch.links.patch!!.small,
+                            patchUrlLarge = launch.links.patch.large,
                             articleUrl = launch.links.article,
                         )
                     }

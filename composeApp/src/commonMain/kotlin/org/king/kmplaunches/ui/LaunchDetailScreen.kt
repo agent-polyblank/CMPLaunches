@@ -26,6 +26,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
+import kmplaunches.composeapp.generated.resources.Res
+import kmplaunches.composeapp.generated.resources.rocket
 import org.king.kmplaunches.image.NetworkImage
 import org.king.kmplaunches.model.RocketLaunchExt
 
@@ -58,10 +60,11 @@ class LaunchDetailScreen(
             Box(Modifier.fillMaxSize().padding(innerPadding)) {
                 Column(modifier = Modifier.fillMaxSize().padding(10.dp)) {
                     NetworkImage(
-                        imageUrl = rocketLaunch.links.patch?.large!!,
+                        imageUrl = rocketLaunch.links.patch?.large ?: "",
                         modifier = Modifier.size(250.dp).padding(15.dp).align(CenterHorizontally),
                         contentScale = androidx.compose.ui.layout.ContentScale.Crop,
                         contentDescription = "Rocket launch patch image",
+                        default = Res.drawable.rocket,
                     )
                     Spacer(modifier = Modifier.height(20.dp))
                     Row(modifier = Modifier.align(Alignment.CenterHorizontally)) {

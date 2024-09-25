@@ -94,7 +94,7 @@ fun LaunchList(state: UiState.Success<List<RocketLaunchExt>>) {
                     Modifier.padding(all = 16.dp).fillMaxSize().height(150.dp).clickable(onClick = {
                         navigator?.push(LaunchDetailScreen(launch))
                     }),
-                verticalAlignment = Alignment.CenterVertically, // Center vertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 NetworkImage(
                     imageUrl = launch.links.patch?.small ?: "",
