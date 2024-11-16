@@ -75,6 +75,8 @@ kotlin {
             implementation(libs.coil.network.ktor)
             implementation(libs.voyager.navigator)
             implementation(libs.voyager.screenModel)
+            implementation(libs.kstore)
+            implementation(libs.kstore.file)
         }
 
         commonTest.dependencies {
@@ -103,7 +105,8 @@ kotlin {
             implementation(compose.desktop.currentOs)
             implementation(libs.sqlite.driver)
             implementation(libs.ktor.client.cio)
-            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.6.4")
+            implementation(libs.kotlinx.coroutines.swing)
+            implementation(libs.appdirs)
         }
     }
 }

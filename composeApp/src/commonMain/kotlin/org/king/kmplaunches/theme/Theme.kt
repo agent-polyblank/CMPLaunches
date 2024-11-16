@@ -1,6 +1,5 @@
 package org.king.kmplaunches.theme
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.darkColorScheme
@@ -12,6 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
+import org.king.kmplaunches.settings.Settings
 
 private val LightColorScheme =
     lightColorScheme(
@@ -83,9 +83,11 @@ internal val LocalThemeIsDark = compositionLocalOf { mutableStateOf(true) }
 
 @Suppress("ktlint:standard:function-naming")
 @Composable
-internal fun AppTheme(content: @Composable () -> Unit) {
-    val systemIsDark = isSystemInDarkTheme()
-    val isDarkState = remember { mutableStateOf(systemIsDark) }
+internal fun AppTheme(
+    settings: Settings,
+    content: @Composable () -> Unit,
+) {
+    val isDarkState = remember { mutableStateOf(settings.darkMode) }
     CompositionLocalProvider(
         LocalThemeIsDark provides isDarkState,
     ) {

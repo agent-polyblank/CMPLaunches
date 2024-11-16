@@ -19,7 +19,7 @@ actual class DatabaseDriverFactory {
     /**
      * The Android [Context] to use when creating the [SqlDriver].
      */
-    private lateinit var context: Context
+    lateinit var context: Context
 
     /**
      * Create a new [SqlDriver] for Android.

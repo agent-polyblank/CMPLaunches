@@ -1,7 +1,7 @@
 -- Define the RocketLaunch table schema
 import kotlin.Boolean;
 
-CREATE TABLE RocketLaunch (
+CREATE TABLE IF NOT EXISTS RocketLaunch(
     flightNumber INTEGER NOT NULL,
     missionName TEXT NOT NULL,
     details TEXT,

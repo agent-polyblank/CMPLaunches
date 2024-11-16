@@ -1,5 +1,7 @@
 @file:Suppress("ktlint:standard:filename", "ktlint:standard:function-naming")
 
+package org.king.kmplaunches
+
 import androidx.compose.ui.window.ComposeUIViewController
 import cafe.adriel.voyager.navigator.Navigator
 import org.king.kmplaunches.di.initKoin

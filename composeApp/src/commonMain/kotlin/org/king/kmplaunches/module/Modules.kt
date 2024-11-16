@@ -10,7 +10,6 @@ import io.ktor.client.plugins.logging.Logging
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import org.king.kmplaunches.SpaceXSDK
-import org.king.kmplaunches.viewmodel.LaunchesViewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
@@ -35,7 +34,6 @@ val commonModule =
         }
         single { SpaceXSDK(get(), get()) }
         single { SpaceXAPI(get()) }
-        factory { LaunchesViewModel(get()) }
     }
 
 expect val platformModules: Module
